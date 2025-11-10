@@ -1,6 +1,12 @@
 "use client";
 
-import { Button, Card, CardBody, CardFooter, CardHeader } from "@heroui/react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
 
 type Props = {
   error: Error;
@@ -14,17 +20,17 @@ export default function GlobalError({ error, reset }: Props) {
         <main className="flex min-h-screen items-center justify-center">
           <Card>
             <CardHeader>Something went wrong!</CardHeader>
-            <CardBody>{error.message}</CardBody>
+            <CardContent>{error.message}</CardContent>
             <CardFooter>
-              <Button
-                color="default"
-                variant="solid"
-                aria-label="try-again"
-                fullWidth
-                onPress={() => reset()}
-              >
-                Try again
-              </Button>
+              <div className="flex w-full justify-center">
+                <Button
+                  color="default"
+                  aria-label="try-again"
+                  onClick={() => reset()}
+                >
+                  Try again
+                </Button>
+              </div>
             </CardFooter>
           </Card>
         </main>

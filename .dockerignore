@@ -1,0 +1,9 @@
+node_modules
+.env
+.next
+.gitignore
+.git
+.prettierrc
+Dockerfile
+Dockerfile.prod
+README.md

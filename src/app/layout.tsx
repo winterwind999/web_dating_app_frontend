@@ -1,7 +1,8 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import { Card, CardContent } from "@/components/ui/card";
+import { Spinner } from "@/components/ui/spinner";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
 import Providers from "./providers";
 
@@ -26,17 +27,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>
-          <div className="bg-secondary">
-            <Header />
-            <main className="min-h-screen">{children}</main>
-            <Footer />
-          </div>
-        </Providers>
+        <Suspense
+          fallback={
+            <div className="flex min-h-screen items-center justify-center">
+              <Card>
+                <CardContent>
+                  <Spinner />
+                </CardContent>
+              </Card>
+            </div>
+          }
+        >
+          <Providers>{children}</Providers>
+        </Suspense>
       </body>
     </html>
   );

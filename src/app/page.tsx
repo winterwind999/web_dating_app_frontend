@@ -1,8 +1,11 @@
 "use client";
 
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import Stack from "@/components/Stack";
-import { stackImages } from "@/utils/constants";
-import { Button } from "@heroui/react";
+import { Button } from "@/components/ui/button";
+import { BACKEND_URL, STACK_IMAGES } from "@/utils/constants";
+import GoogleIcon from "@/utils/icons/GoogleIcon";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -33,37 +36,52 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      <div className="bg-primary-light flex w-full justify-center py-20">
-        <div className="grid w-4/5 grid-cols-1 place-items-center gap-3 lg:grid-cols-2">
-          <div className="flex flex-col items-center gap-3 lg:gap-6">
-            <p className="text-center text-4xl font-bold md:text-6xl lg:text-7xl">
-              Meet someone who truly matches you
-            </p>
+    <div className="bg-background">
+      <Header />
 
-            <p className="text-center text-xl md:text-2xl lg:text-3xl">
-              Start your Matchy story today
-            </p>
+      <main className="min-h-screen">
+        <div className="bg-secondary flex w-full justify-center py-20">
+          <div className="grid w-4/5 grid-cols-1 place-items-center gap-3 lg:grid-cols-2">
+            <div className="flex flex-col items-center gap-3 lg:gap-6">
+              <p className="text-center text-4xl font-bold md:text-6xl lg:text-7xl">
+                Meet someone who truly matches you
+              </p>
 
-            <Button
-              color="primary"
-              variant="ghost"
-              as={Link}
-              aria-label="sign-up"
-              className="md:h-14 md:w-40 md:text-xl lg:h-16 lg:w-44 lg:text-2xl"
-              href=""
-            >
-              Sign Up
-            </Button>
+              <p className="text-center text-xl md:text-2xl lg:text-3xl">
+                Start your Matchy story today
+              </p>
+
+              <Button variant="outline" size="2xl" asChild>
+                <Link href="/sign-up">Sign Up</Link>
+              </Button>
+
+              <p>or</p>
+
+              <Button
+                variant="ghost"
+                size="2xl"
+                asChild
+                className="border-light border-2"
+              >
+                <Link href={`${BACKEND_URL}/auth/google/login`}>
+                  <GoogleIcon />
+                  <p>Sign Up with Google</p>
+                </Link>
+              </Button>
+            </div>
+
+            <Stack
+              randomRotation={true}
+              cardsData={STACK_IMAGES}
+              cardDimensions={{ width: cardSize, height: cardSize }}
+              autoplay
+              interval={3000}
+            />
           </div>
-
-          <Stack
-            randomRotation={true}
-            cardsData={stackImages}
-            cardDimensions={{ width: cardSize, height: cardSize }}
-          />
         </div>
-      </div>
+      </main>
+
+      <Footer />
     </div>
   );
 }

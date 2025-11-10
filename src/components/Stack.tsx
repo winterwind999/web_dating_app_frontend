@@ -49,6 +49,8 @@ interface StackProps {
   sendToBackOnClick?: boolean;
   cardsData?: { id: number; img: string }[];
   animationConfig?: { stiffness: number; damping: number };
+  autoplay?: boolean;
+  interval?: number;
 }
 
 export default function Stack({
@@ -58,6 +60,8 @@ export default function Stack({
   cardsData = [],
   animationConfig = { stiffness: 260, damping: 20 },
   sendToBackOnClick = false,
+  autoplay,
+  interval,
 }: StackProps) {
   const [cards, setCards] = useState(
     cardsData.length
@@ -84,6 +88,19 @@ export default function Stack({
   const [isClient, setIsClient] = useState<boolean>(false);
 
   useEffect(() => setIsClient(true), []);
+
+  useEffect(() => {
+    if (!autoplay || cards.length === 0) {
+      return;
+    }
+
+    const timer = setInterval(() => {
+      const topCardId = cards[cards.length - 1].id;
+      sendToBack(topCardId);
+    }, interval ?? 2000);
+
+    return () => clearInterval(timer);
+  }, [autoplay, cards, interval]);
 
   const sendToBack = (id: number) => {
     setCards((prev) => {
