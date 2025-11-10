@@ -21,6 +21,8 @@ export const useSocketStore = create<SocketStore>((set, get) => ({
       return;
     }
 
+    console.log("BACKEND_URL", BACKEND_URL);
+
     const newSocket = io(BACKEND_URL, {
       withCredentials: true,
       transports: ["polling", "websocket"],
