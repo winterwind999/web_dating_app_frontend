@@ -1,4 +1,5 @@
-export const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+export const BACKEND_URL =
+  process.env.NEXT_PUBLIC_BACKEND_URL || "https://matchy-api-h0c4.onrender.com";
 
 export const CSRF_COOKIE: string =
   process.env.NEXT_PUBLIC_APP_ENV === "production"
