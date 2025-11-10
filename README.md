@@ -54,6 +54,7 @@
 - ⏳ Admin modules
 - ✅ Dockerize frontend
 - ✅ Setup GitHub Actions
+- ✅ Setup Docker Hub
 - ⏳ Deploy to Render
 
 ## License
