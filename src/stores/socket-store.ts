@@ -23,10 +23,11 @@ export const useSocketStore = create<SocketStore>((set, get) => ({
 
     const newSocket = io(BACKEND_URL, {
       withCredentials: true,
-      transports: ["websocket", "polling"],
+      transports: ["polling", "websocket"],
       reconnection: true,
       reconnectionAttempts: 5,
       reconnectionDelay: 1000,
+      autoConnect: true,
     });
 
     newSocket.on("connect", () => {

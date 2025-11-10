@@ -55,7 +55,7 @@
 - ✅ Dockerize frontend
 - ✅ Setup GitHub Actions
 - ✅ Setup Docker Hub
-- ⏳ Deploy to Render
+- ✅ Deploy to Render
 
 ## License
 
