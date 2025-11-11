@@ -1,5 +1,6 @@
 "use client";
 
+import { healthCheckAction } from "@/actions/auth-action";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Stack from "@/components/Stack";
@@ -8,9 +9,24 @@ import { BACKEND_URL, STACK_IMAGES } from "@/utils/constants";
 import GoogleIcon from "@/utils/icons/GoogleIcon";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function Home() {
   const [cardSize, setCardSize] = useState<number>(600);
+
+  useEffect(() => {
+    const onHealthCheck = async () => {
+      const res = await healthCheckAction();
+
+      toast.promise(res, {
+        loading: "Cold starting backend...",
+        success: "Backend is ready",
+        error: "Failed to cold start backend",
+      });
+    };
+
+    onHealthCheck();
+  }, []);
 
   useEffect(() => {
     const updateCardSize = () => {

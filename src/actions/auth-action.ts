@@ -49,3 +49,11 @@ export async function logoutAction() {
 
   return { success: true };
 }
+
+export async function healthCheckAction() {
+  const res = await fetch(`${BACKEND_URL}/api/auth/health-check`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
