@@ -1,8 +1,7 @@
 "use client";
 
-import { healthCheckAction } from "@/actions/auth-action";
 import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
 
 type Props = {
@@ -10,14 +9,6 @@ type Props = {
 };
 
 export default function Providers({ children }: Props) {
-  useEffect(() => {
-    const onHealthCheck = async () => {
-      await healthCheckAction();
-    };
-
-    onHealthCheck();
-  }, []);
-
   return (
     <NextThemesProvider
       attribute="class"

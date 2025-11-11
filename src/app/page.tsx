@@ -1,5 +1,6 @@
 "use client";
 
+import { healthCheckAction } from "@/actions/auth-action";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Stack from "@/components/Stack";
@@ -11,6 +12,14 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [cardSize, setCardSize] = useState<number>(600);
+
+  useEffect(() => {
+    const onHealthCheck = async () => {
+      await healthCheckAction();
+    };
+
+    onHealthCheck();
+  }, []);
 
   useEffect(() => {
     const updateCardSize = () => {
