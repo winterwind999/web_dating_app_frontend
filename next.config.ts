@@ -1,4 +1,3 @@
-import { BACKEND_URL } from "@/utils/constants";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
@@ -8,7 +7,10 @@ const nextConfig: NextConfig = {
 };
 
 if (typeof fetch !== "undefined") {
-  fetch(BACKEND_URL)
+  fetch(
+    process.env.NEXT_PUBLIC_BACKEND_URL ||
+      "https://matchy-api-h0c4.onrender.com",
+  )
     .then(() => console.log("Pre-warmed backend"))
     .catch(() => console.log("Failed to pre-warm backend"));
 }
