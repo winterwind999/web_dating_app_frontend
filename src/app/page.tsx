@@ -13,10 +13,6 @@ export default function Home() {
   const [cardSize, setCardSize] = useState<number>(600);
 
   useEffect(() => {
-    fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}`).catch(() => {});
-  }, []);
-
-  useEffect(() => {
     const updateCardSize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
