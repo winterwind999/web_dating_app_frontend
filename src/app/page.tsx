@@ -1,6 +1,5 @@
 "use client";
 
-import { healthCheckAction } from "@/actions/auth-action";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Stack from "@/components/Stack";
@@ -15,7 +14,9 @@ export default function Home() {
 
   useEffect(() => {
     const onHealthCheck = async () => {
-      await healthCheckAction();
+      await fetch(`${BACKEND_URL}/api/auth/health-check`, {
+        method: "GET",
+      });
     };
 
     onHealthCheck();
