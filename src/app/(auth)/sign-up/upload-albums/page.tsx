@@ -3,7 +3,7 @@
 import { uploadAlbumsAction } from "@/actions/users-action";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Field } from "@/components/ui/field";
+import { Field, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Spinner } from "@/components/ui/spinner";
 import { ALBUM_TYPES, CreateAlbumDto } from "@/utils/constants";
@@ -139,305 +139,325 @@ export default function UploadAlbums() {
               className="flex flex-col gap-3"
               onSubmit={handleSubmit(onSubmit)}
             >
-              <Input
-                ref={videoAlbumRef}
-                type="file"
-                accept="video/*"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
+              <Field>
+                <FieldLabel htmlFor="video">Video</FieldLabel>
+                <Input
+                  ref={videoAlbumRef}
+                  id="video"
+                  type="file"
+                  accept="video/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
 
-                  if (file) {
-                    if (file.size > 10 * 1024 * 1024) {
-                      toast.error("File size exceeds 10MB limit");
-                      e.target.value = "";
-                      return;
-                    }
-
-                    const newFile: CreateAlbumDto = {
-                      id: 1,
-                      filename: file.name,
-                      file: file,
-                      type: "Video",
-                    };
-
-                    const newAlbums = [...formAlbums, newFile];
-
-                    setValue("albums", newAlbums);
-                  }
-                }}
-                disabled={isPending}
-              />
-
-              {videoAlbum && (
-                <div className="flex flex-col items-center gap-3">
-                  <video id="video-preview" width={300} height={300} />
-
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    onClick={() => {
-                      if (isPending) {
+                    if (file) {
+                      if (file.size > 10 * 1024 * 1024) {
+                        toast.error("File size exceeds 10MB limit");
+                        e.target.value = "";
                         return;
                       }
 
-                      const filteredAlbums = formAlbums.filter(
-                        (album) => album.id !== 1,
-                      );
-                      setValue("albums", filteredAlbums);
-                      if (videoAlbumRef.current) {
-                        videoAlbumRef.current.value = "";
-                      }
-                    }}
-                    disabled={isPending}
-                  >
-                    Remove
-                  </Button>
-                </div>
-              )}
+                      const newFile: CreateAlbumDto = {
+                        id: 1,
+                        filename: file.name,
+                        file: file,
+                        type: "Video",
+                      };
 
-              <Input
-                ref={image1AlbumRef}
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
+                      const newAlbums = [...formAlbums, newFile];
 
-                  if (file) {
-                    if (file.size > 10 * 1024 * 1024) {
-                      toast.error("File size exceeds 10MB limit");
-                      e.target.value = "";
-                      return;
+                      setValue("albums", newAlbums);
                     }
+                  }}
+                  disabled={isPending}
+                />
+                {videoAlbum && (
+                  <div className="flex flex-col items-center gap-3">
+                    <video
+                      id="video-preview"
+                      width={300}
+                      height={300}
+                      controls
+                    />
 
-                    const newAlbum: CreateAlbumDto = {
-                      id: 2,
-                      filename: file.name,
-                      file: file,
-                      type: "Image",
-                    };
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      onClick={() => {
+                        if (isPending) {
+                          return;
+                        }
 
-                    const newAlbums = [...formAlbums, newAlbum];
+                        const filteredAlbums = formAlbums.filter(
+                          (album) => album.id !== 1,
+                        );
+                        setValue("albums", filteredAlbums);
+                        if (videoAlbumRef.current) {
+                          videoAlbumRef.current.value = "";
+                        }
+                      }}
+                      disabled={isPending}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                )}
+              </Field>
 
-                    setValue("albums", newAlbums);
-                  }
-                }}
-                disabled={isPending}
-              />
+              <Field>
+                <FieldLabel htmlFor="image1">Image 1</FieldLabel>
+                <Input
+                  ref={image1AlbumRef}
+                  id="image1"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
 
-              {image1Album && (
-                <div className="flex flex-col items-center gap-3">
-                  <img
-                    id="image1-preview"
-                    alt="image1-preview"
-                    width={300}
-                    height={300}
-                  />
-
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    onClick={() => {
-                      if (isPending) {
+                    if (file) {
+                      if (file.size > 10 * 1024 * 1024) {
+                        toast.error("File size exceeds 10MB limit");
+                        e.target.value = "";
                         return;
                       }
 
-                      const filteredAlbums = formAlbums.filter(
-                        (album) => album.id !== 2,
-                      );
-                      setValue("albums", filteredAlbums);
-                      if (image1AlbumRef.current) {
-                        image1AlbumRef.current.value = "";
-                      }
-                    }}
-                    disabled={isPending}
-                  >
-                    Remove
-                  </Button>
-                </div>
-              )}
+                      const newAlbum: CreateAlbumDto = {
+                        id: 2,
+                        filename: file.name,
+                        file: file,
+                        type: "Image",
+                      };
 
-              <Input
-                ref={image2AlbumRef}
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
+                      const newAlbums = [...formAlbums, newAlbum];
 
-                  if (file) {
-                    if (file.size > 10 * 1024 * 1024) {
-                      toast.error("File size exceeds 10MB limit");
-                      e.target.value = "";
-                      return;
+                      setValue("albums", newAlbums);
                     }
+                  }}
+                  disabled={isPending}
+                />
+                {image1Album && (
+                  <div className="flex flex-col items-center gap-3">
+                    <img
+                      id="image1-preview"
+                      alt="image1-preview"
+                      width={300}
+                      height={300}
+                    />
 
-                    const newFile: CreateAlbumDto = {
-                      id: 3,
-                      filename: file.name,
-                      file: file,
-                      type: "Image",
-                    };
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      onClick={() => {
+                        if (isPending) {
+                          return;
+                        }
 
-                    const newAlbums = [...formAlbums, newFile];
+                        const filteredAlbums = formAlbums.filter(
+                          (album) => album.id !== 2,
+                        );
+                        setValue("albums", filteredAlbums);
+                        if (image1AlbumRef.current) {
+                          image1AlbumRef.current.value = "";
+                        }
+                      }}
+                      disabled={isPending}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                )}
+              </Field>
 
-                    setValue("albums", newAlbums);
-                  }
-                }}
-                disabled={isPending}
-              />
+              <Field>
+                <FieldLabel htmlFor="image2">Image 2</FieldLabel>
+                <Input
+                  ref={image2AlbumRef}
+                  id="image2"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
 
-              {image2Album && (
-                <div className="flex flex-col items-center gap-3">
-                  <img
-                    id="image2-preview"
-                    alt="image2-preview"
-                    width={300}
-                    height={300}
-                  />
-
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    onClick={() => {
-                      if (isPending) {
+                    if (file) {
+                      if (file.size > 10 * 1024 * 1024) {
+                        toast.error("File size exceeds 10MB limit");
+                        e.target.value = "";
                         return;
                       }
 
-                      const filteredAlbums = formAlbums.filter(
-                        (album) => album.id !== 3,
-                      );
-                      setValue("albums", filteredAlbums);
-                      if (image2AlbumRef.current) {
-                        image2AlbumRef.current.value = "";
-                      }
-                    }}
-                    disabled={isPending}
-                  >
-                    Remove
-                  </Button>
-                </div>
-              )}
+                      const newFile: CreateAlbumDto = {
+                        id: 3,
+                        filename: file.name,
+                        file: file,
+                        type: "Image",
+                      };
 
-              <Input
-                ref={image3AlbumRef}
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
+                      const newAlbums = [...formAlbums, newFile];
 
-                  if (file) {
-                    if (file.size > 10 * 1024 * 1024) {
-                      toast.error("File size exceeds 10MB limit");
-                      e.target.value = "";
-                      return;
+                      setValue("albums", newAlbums);
                     }
+                  }}
+                  disabled={isPending}
+                />
+                {image2Album && (
+                  <div className="flex flex-col items-center gap-3">
+                    <img
+                      id="image2-preview"
+                      alt="image2-preview"
+                      width={300}
+                      height={300}
+                    />
 
-                    const newFile: CreateAlbumDto = {
-                      id: 4,
-                      filename: file.name,
-                      file: file,
-                      type: "Image",
-                    };
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      onClick={() => {
+                        if (isPending) {
+                          return;
+                        }
 
-                    const newAlbums = [...formAlbums, newFile];
+                        const filteredAlbums = formAlbums.filter(
+                          (album) => album.id !== 3,
+                        );
+                        setValue("albums", filteredAlbums);
+                        if (image2AlbumRef.current) {
+                          image2AlbumRef.current.value = "";
+                        }
+                      }}
+                      disabled={isPending}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                )}
+              </Field>
 
-                    setValue("albums", newAlbums);
-                  }
-                }}
-                disabled={isPending}
-              />
+              <Field>
+                <FieldLabel htmlFor="image3">Image 3</FieldLabel>
+                <Input
+                  ref={image3AlbumRef}
+                  id="image3"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
 
-              {image3Album && (
-                <div className="flex flex-col items-center gap-3">
-                  <img
-                    id="image3-preview"
-                    alt="image3-preview"
-                    width={300}
-                    height={300}
-                  />
-
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    onClick={() => {
-                      if (isPending) {
+                    if (file) {
+                      if (file.size > 10 * 1024 * 1024) {
+                        toast.error("File size exceeds 10MB limit");
+                        e.target.value = "";
                         return;
                       }
 
-                      const filteredAlbums = formAlbums.filter(
-                        (album) => album.id !== 4,
-                      );
-                      setValue("albums", filteredAlbums);
-                      if (image3AlbumRef.current) {
-                        image3AlbumRef.current.value = "";
-                      }
-                    }}
-                    disabled={isPending}
-                  >
-                    Remove
-                  </Button>
-                </div>
-              )}
+                      const newFile: CreateAlbumDto = {
+                        id: 4,
+                        filename: file.name,
+                        file: file,
+                        type: "Image",
+                      };
 
-              <Input
-                ref={image4AlbumRef}
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  const file = e.target.files?.[0];
+                      const newAlbums = [...formAlbums, newFile];
 
-                  if (file) {
-                    if (file.size > 10 * 1024 * 1024) {
-                      toast.error("File size exceeds 10MB limit");
-                      e.target.value = "";
-                      return;
+                      setValue("albums", newAlbums);
                     }
+                  }}
+                  disabled={isPending}
+                />
+                {image3Album && (
+                  <div className="flex flex-col items-center gap-3">
+                    <img
+                      id="image3-preview"
+                      alt="image3-preview"
+                      width={300}
+                      height={300}
+                    />
 
-                    const newFile: CreateAlbumDto = {
-                      id: 5,
-                      filename: file.name,
-                      file: file,
-                      type: "Image",
-                    };
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      onClick={() => {
+                        if (isPending) {
+                          return;
+                        }
 
-                    const newAlbums = [...formAlbums, newFile];
+                        const filteredAlbums = formAlbums.filter(
+                          (album) => album.id !== 4,
+                        );
+                        setValue("albums", filteredAlbums);
+                        if (image3AlbumRef.current) {
+                          image3AlbumRef.current.value = "";
+                        }
+                      }}
+                      disabled={isPending}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                )}
+              </Field>
 
-                    setValue("albums", newAlbums);
-                  }
-                }}
-                disabled={isPending}
-              />
+              <Field>
+                <FieldLabel htmlFor="image4">Image 4</FieldLabel>
+                <Input
+                  ref={image4AlbumRef}
+                  id="image4"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
 
-              {image4Album && (
-                <div className="flex flex-col items-center gap-3">
-                  <img
-                    id="image4-preview"
-                    alt="image4-preview"
-                    width={300}
-                    height={300}
-                  />
-
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    onClick={() => {
-                      if (isPending) {
+                    if (file) {
+                      if (file.size > 10 * 1024 * 1024) {
+                        toast.error("File size exceeds 10MB limit");
+                        e.target.value = "";
                         return;
                       }
 
-                      const filteredAlbums = formAlbums.filter(
-                        (album) => album.id !== 5,
-                      );
-                      setValue("albums", filteredAlbums);
-                      if (image4AlbumRef.current) {
-                        image4AlbumRef.current.value = "";
-                      }
-                    }}
-                    disabled={isPending}
-                  >
-                    Remove
-                  </Button>
-                </div>
-              )}
+                      const newFile: CreateAlbumDto = {
+                        id: 5,
+                        filename: file.name,
+                        file: file,
+                        type: "Image",
+                      };
+
+                      const newAlbums = [...formAlbums, newFile];
+
+                      setValue("albums", newAlbums);
+                    }
+                  }}
+                  disabled={isPending}
+                />
+                {image4Album && (
+                  <div className="flex flex-col items-center gap-3">
+                    <img
+                      id="image4-preview"
+                      alt="image4-preview"
+                      width={300}
+                      height={300}
+                    />
+
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      onClick={() => {
+                        if (isPending) {
+                          return;
+                        }
+
+                        const filteredAlbums = formAlbums.filter(
+                          (album) => album.id !== 5,
+                        );
+                        setValue("albums", filteredAlbums);
+                        if (image4AlbumRef.current) {
+                          image4AlbumRef.current.value = "";
+                        }
+                      }}
+                      disabled={isPending}
+                    >
+                      Remove
+                    </Button>
+                  </div>
+                )}
+              </Field>
             </form>
           </CardContent>
           <CardFooter>
