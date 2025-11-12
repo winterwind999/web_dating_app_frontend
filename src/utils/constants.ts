@@ -54,11 +54,10 @@ export const ALBUM_TYPES = {
 export type AlbumType = (typeof ALBUM_TYPES)[keyof typeof ALBUM_TYPES];
 
 export type Album = {
-  id: string;
+  id: number;
   public_id: string;
   secure_url: string;
   type: AlbumType;
-  sortOrder: number;
 };
 
 export const USER_STATUSES = {
@@ -148,7 +147,7 @@ export type NavbarItem = {
 
 export type User = {
   _id: string;
-  photo: Photo | null;
+  photo: Photo;
   firstName: string;
   middleName: string;
   lastName: string;
@@ -241,4 +240,11 @@ export type NotificationPayload = {
   user: string;
   message: string;
   isRead: boolean;
+};
+
+export type CreateAlbumDto = {
+  id: number;
+  filename: string;
+  file: File;
+  type: AlbumType;
 };

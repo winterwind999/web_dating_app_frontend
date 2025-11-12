@@ -3,10 +3,12 @@
 import { authenticatedFetch } from "@/utils/authenticatedFetch";
 import {
   BACKEND_URL,
+  CSRF_COOKIE,
   type CreateUserDto,
   type UpdateUserDto,
 } from "@/utils/constants";
 import { getCurrentUserId } from "@/utils/getCurrentUserId";
+import { cookies } from "next/headers";
 
 export async function getUserAction() {
   const userId = await getCurrentUserId();
@@ -23,13 +25,34 @@ export async function getUserAction() {
 }
 
 export async function createUserAction(createUserDto: CreateUserDto) {
+  const cookieStore = await cookies();
+  const csrfToken = cookieStore.get(CSRF_COOKIE)?.value;
+
   const res = await fetch(`${BACKEND_URL}/api/users`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "x-csrf-token": csrfToken || "",
     },
+    credentials: "include",
     body: JSON.stringify(createUserDto),
   });
+
+  const setCookieHeader = res.headers.get("set-cookie");
+  if (setCookieHeader) {
+    const cookies = setCookieHeader.split(", ");
+    cookies.forEach((cookie) => {
+      const [nameValue] = cookie.split(";");
+      const [name, value] = nameValue.split("=");
+      cookieStore.set(name, value, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        path: "/",
+        maxAge: 7 * 24 * 60 * 60,
+      });
+    });
+  }
 
   return await res.json();
 }

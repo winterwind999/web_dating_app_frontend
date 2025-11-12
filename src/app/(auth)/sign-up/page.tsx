@@ -159,51 +159,50 @@ export default function RegisterPage() {
   const [cityOpen, setCityOpen] = useState<boolean>(false);
   const [interestsOpen, setInterestsOpen] = useState<boolean>(false);
 
-  const { handleSubmit, control, watch, reset, formState } =
-    useForm<FormValues>({
-      resolver: zodResolver(formSchema),
-      mode: "all",
-      defaultValues: {
-        important: "",
-        firstName: "",
-        middleName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        birthday: "",
-        gender: GENDERS.MALE,
-        address: {
-          street: "",
-          city: "",
-          province: "",
-          country: "Philippines",
-        },
-        shortBio: "",
-        interests: [],
-        preferences: {
-          genderPreference: [],
-          minAge: 18,
-          maxAge: 100,
-          maxDistance: 50,
-        },
-        status: USER_STATUSES.ACTIVE,
+  const { handleSubmit, control, watch, reset } = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    mode: "all",
+    defaultValues: {
+      important: "",
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      birthday: "",
+      gender: GENDERS.MALE,
+      address: {
+        street: "",
+        city: "",
+        province: "",
+        country: "Philippines",
       },
-    });
+      shortBio: "",
+      interests: [],
+      preferences: {
+        genderPreference: [],
+        minAge: 18,
+        maxAge: 100,
+        maxDistance: 50,
+      },
+      status: USER_STATUSES.ACTIVE,
+    },
+  });
   const formImportant = watch("important");
-  const selectedProvince = watch("address.province");
+  const formProvince = watch("address.province");
 
   useEffect(() => {
     getProvinces().then(setProvinces);
   }, []);
 
   useEffect(() => {
-    if (selectedProvince) {
-      getCitiesByProvince(selectedProvince).then(setCities);
+    if (formProvince) {
+      getCitiesByProvince(formProvince).then(setCities);
     } else {
       setCities([]);
     }
-  }, [selectedProvince]);
+  }, [formProvince]);
 
   const onSubmit = async (data: FormValues) => {
     if (formImportant) {
@@ -221,8 +220,9 @@ export default function RegisterPage() {
     }
 
     reset();
-    router.replace(`/feeds`);
+    router.replace(`/sign-up/upload-photo`);
     router.refresh();
+
     setIsPending(false);
   };
 
@@ -899,7 +899,7 @@ export default function RegisterPage() {
                 size="2xl"
                 disabled={isPending}
               >
-                {isPending && <Spinner />} SUBMIT
+                {isPending && <Spinner />} NEXT
               </Button>
             </Field>
           </CardFooter>
