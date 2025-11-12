@@ -124,11 +124,9 @@ export default function UploadAlbums() {
       return;
     }
 
+    setIsPending(false);
     reset();
     router.replace(`/feeds`);
-    router.refresh();
-
-    setIsPending(false);
   };
 
   return (

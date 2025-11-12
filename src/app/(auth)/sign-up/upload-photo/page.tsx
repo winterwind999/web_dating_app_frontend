@@ -92,10 +92,8 @@ export default function UploadPhoto() {
     }
 
     setIsPending(false);
-
     reset();
     router.replace(`/sign-up/upload-albums`);
-    router.refresh();
   };
 
   const capturePhoto = () => {

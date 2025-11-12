@@ -219,11 +219,9 @@ export default function RegisterPage() {
       return;
     }
 
+    setIsPending(false);
     reset();
     router.replace(`/sign-up/upload-photo`);
-    router.refresh();
-
-    setIsPending(false);
   };
 
   return (

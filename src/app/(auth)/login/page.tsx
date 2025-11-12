@@ -74,7 +74,6 @@ export default function LoginPage() {
     setIsPending(false);
     reset();
     router.replace(`/feeds`);
-    router.refresh();
   };
 
   return (
