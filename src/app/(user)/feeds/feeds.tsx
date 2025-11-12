@@ -52,8 +52,7 @@ export default function Feeds({
     new Set(initialFeeds.map((feed) => feed._id)),
   );
   const currentUser = feeds[currentIndex];
-  const sortedAlbums =
-    currentUser?.albums?.sort((a, b) => a.sortOrder - b.sortOrder) || [];
+  const sortedAlbums = currentUser?.albums?.sort((a, b) => a.id - b.id) || [];
   const currentAlbum = sortedAlbums[albumIndex];
 
   const x = useMotionValue(0);
