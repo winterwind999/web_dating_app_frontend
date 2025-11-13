@@ -107,8 +107,8 @@ export default function UploadAlbums() {
   ]);
 
   const onSubmit = async () => {
-    if (formAlbums.length < 3) {
-      toast.error("Please upload at least 3 albums");
+    if (formAlbums.length < 2) {
+      toast.error("Please upload at least 2 in albums");
       return;
     }
 
@@ -146,7 +146,10 @@ export default function UploadAlbums() {
             >
               <p>Albums</p>
               <Field>
-                <FieldLabel htmlFor="video">Video</FieldLabel>
+                <FieldLabel htmlFor="video">
+                  Video{" "}
+                  <span className="text-muted-foreground">(max 10MB)</span>
+                </FieldLabel>
                 <Input
                   ref={videoAlbumRef}
                   id="video"
@@ -209,7 +212,10 @@ export default function UploadAlbums() {
               </Field>
 
               <Field>
-                <FieldLabel htmlFor="image1">Image 1</FieldLabel>
+                <FieldLabel htmlFor="image1">
+                  Image 1{" "}
+                  <span className="text-muted-foreground">(max 10MB)</span>
+                </FieldLabel>
                 <Input
                   ref={image1AlbumRef}
                   id="image1"
@@ -272,7 +278,10 @@ export default function UploadAlbums() {
               </Field>
 
               <Field>
-                <FieldLabel htmlFor="image2">Image 2</FieldLabel>
+                <FieldLabel htmlFor="image2">
+                  Image 2{" "}
+                  <span className="text-muted-foreground">(max 10MB)</span>
+                </FieldLabel>
                 <Input
                   ref={image2AlbumRef}
                   id="image2"
@@ -335,7 +344,10 @@ export default function UploadAlbums() {
               </Field>
 
               <Field>
-                <FieldLabel htmlFor="image3">Image 3</FieldLabel>
+                <FieldLabel htmlFor="image3">
+                  Image 3{" "}
+                  <span className="text-muted-foreground">(max 10MB)</span>
+                </FieldLabel>
                 <Input
                   ref={image3AlbumRef}
                   id="image3"
@@ -398,7 +410,10 @@ export default function UploadAlbums() {
               </Field>
 
               <Field>
-                <FieldLabel htmlFor="image4">Image 4</FieldLabel>
+                <FieldLabel htmlFor="image4">
+                  Image 4{" "}
+                  <span className="text-muted-foreground">(max 10MB)</span>
+                </FieldLabel>
                 <Input
                   ref={image4AlbumRef}
                   id="image4"

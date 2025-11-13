@@ -128,7 +128,10 @@ export default function UploadPhoto() {
               onSubmit={handleSubmit(onSubmit)}
             >
               <Field>
-                <FieldLabel>Photo</FieldLabel>
+                <FieldLabel>
+                  Photo{" "}
+                  <span className="text-muted-foreground">(max 10MB)</span>
+                </FieldLabel>
                 <RadioGroup
                   onValueChange={(value: "Upload" | "Webcam") =>
                     setPhotoOption(value)
