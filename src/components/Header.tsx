@@ -11,14 +11,14 @@ export default function Header() {
       <Link href="/">
         <Image
           src="/assets/Matchy_Icon_Logo.png"
-          alt="matchy-logo"
+          alt="matchy-logo-lightmode"
           width={150}
           height={50}
           className="dark:hidden"
         />
         <Image
           src="/assets/Matchy_Icon_Logo_DarkMode.png"
-          alt="matchy-logo"
+          alt="matchy-logo-darkmode"
           width={150}
           height={50}
           className="hidden dark:block"

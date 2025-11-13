@@ -15,6 +15,7 @@ import { BACKEND_URL } from "@/utils/constants";
 import GoogleIcon from "@/utils/icons/GoogleIcon";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -85,7 +86,22 @@ export default function LoginPage() {
               <Button asChild>
                 <Link href="/">Back</Link>
               </Button>
-              <h3 className="font-semibold">Login</h3>
+              <Image
+                src="/assets/Matchy_Icon_Logo.png"
+                alt="matchy-logo-lightmode"
+                width={300}
+                height={100}
+                sizes="(max-width: 640px) 150px, 300px"
+                className="h-[50px] w-[150px] md:h-[100px] md:w-[300px] dark:hidden"
+              />
+              <Image
+                src="/assets/Matchy_Icon_Logo_DarkMode.png"
+                alt="matchy-logo-darkmode"
+                width={300}
+                height={100}
+                sizes="(max-width: 640px) 150px, 300px"
+                className="hidden h-[50px] w-[150px] md:h-[100px] md:w-[300px] dark:block"
+              />
               <div className="w-16"></div>
             </div>
           </CardHeader>
@@ -184,7 +200,7 @@ export default function LoginPage() {
                       size="2xl"
                       disabled={isPending}
                     >
-                      {isPending && <Spinner />} SUBMIT
+                      {isPending && <Spinner />} LOGIN
                     </Button>
                   </Field>
                 </FieldGroup>
