@@ -697,7 +697,12 @@ export default function RegisterPage() {
 
                     return (
                       <Field data-invalid={fieldState.invalid}>
-                        <FieldLabel>Interests</FieldLabel>
+                        <FieldLabel>
+                          Interests{" "}
+                          <span className="text-muted-foreground">
+                            (minimum of 3)
+                          </span>
+                        </FieldLabel>
                         <Popover
                           open={interestsOpen}
                           onOpenChange={setInterestsOpen}

@@ -248,3 +248,18 @@ export type CreateAlbumDto = {
   file: File;
   type: AlbumType;
 };
+
+export type CreateBlockDto = {
+  user: string;
+  blockedUser: string;
+  reasons: ReportReason[];
+  description: string;
+};
+
+export type CreateReportDto = {
+  user: string;
+  reportedUser: string;
+  reasons: ReportReason[];
+  description: string;
+  status: ReportStatus;
+};

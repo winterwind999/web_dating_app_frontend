@@ -26,7 +26,7 @@ export default function UploadPhoto() {
   const router = useRouter();
 
   const [isPending, setIsPending] = useState<boolean>(false);
-  const [photoOption, setPhotoOption] = useState<string>("Upload");
+  const [photoOption, setPhotoOption] = useState<"Upload" | "Webcam">("Upload");
   const [hasCamera, setHasCamera] = useState<boolean>(true);
 
   const webcamRef = useRef<Webcam | null>(null);
@@ -130,7 +130,9 @@ export default function UploadPhoto() {
               <Field>
                 <FieldLabel>Photo</FieldLabel>
                 <RadioGroup
-                  onValueChange={(value: string) => setPhotoOption(value)}
+                  onValueChange={(value: "Upload" | "Webcam") =>
+                    setPhotoOption(value)
+                  }
                   defaultValue={photoOption}
                   className="flex flex-wrap gap-4"
                   disabled={isPending}

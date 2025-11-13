@@ -5,7 +5,6 @@ import Header from "@/components/Header";
 import Stack from "@/components/Stack";
 import { Button } from "@/components/ui/button";
 import { BACKEND_URL, STACK_IMAGES } from "@/utils/constants";
-import GoogleIcon from "@/utils/icons/GoogleIcon";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -65,7 +64,7 @@ export default function Home() {
                 <Link href="/sign-up">Sign Up</Link>
               </Button>
 
-              <p>or</p>
+              {/* <p>or</p>
 
               <Button
                 variant="ghost"
@@ -77,7 +76,7 @@ export default function Home() {
                   <GoogleIcon />
                   <p>Sign Up with Google</p>
                 </Link>
-              </Button>
+              </Button> */}
             </div>
 
             <Stack

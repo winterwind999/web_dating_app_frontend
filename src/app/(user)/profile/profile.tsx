@@ -52,6 +52,8 @@ import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import z from "zod";
+import UploadAlbums from "./upload-albums";
+import UploadPhoto from "./upload-photo";
 
 const formSchema = z.object({
   firstName: z.string().min(1, "This field is required"),
@@ -208,7 +210,9 @@ export default function Profile({ user }: Props) {
 
   return (
     <div className="flex items-center justify-center py-5">
-      <div className="w-4/5 lg:w-2/5">
+      <div className="flex w-4/5 flex-col gap-3 lg:w-2/5">
+        <UploadPhoto user={user} />
+
         <Card>
           <CardContent>
             <form id="profile-form" onSubmit={handleSubmit(onSubmit)}>
@@ -612,7 +616,12 @@ export default function Profile({ user }: Props) {
 
                     return (
                       <Field data-invalid={fieldState.invalid}>
-                        <FieldLabel>Interests</FieldLabel>
+                        <FieldLabel>
+                          Interests{" "}
+                          <span className="text-muted-foreground">
+                            (max length of 350 characters)
+                          </span>
+                        </FieldLabel>
                         <Popover
                           open={interestsOpen}
                           onOpenChange={setInterestsOpen}
@@ -817,6 +826,8 @@ export default function Profile({ user }: Props) {
             </Field>
           </CardFooter>
         </Card>
+
+        <UploadAlbums user={user} />
       </div>
     </div>
   );

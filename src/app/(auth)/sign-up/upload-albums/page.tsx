@@ -60,6 +60,7 @@ export default function UploadAlbums() {
     ) as HTMLInputElement;
     if (videoAlbum?.id) {
       videoPreview.src = URL.createObjectURL(videoAlbum.file);
+      objectUrls.push(videoPreview.src);
     }
 
     const image1Preview = document.getElementById(
@@ -67,6 +68,7 @@ export default function UploadAlbums() {
     ) as HTMLInputElement;
     if (image1Album?.id) {
       image1Preview.src = URL.createObjectURL(image1Album.file);
+      objectUrls.push(image1Preview.src);
     }
 
     const image2Preview = document.getElementById(
@@ -74,6 +76,7 @@ export default function UploadAlbums() {
     ) as HTMLInputElement;
     if (image2Album?.id) {
       image2Preview.src = URL.createObjectURL(image2Album.file);
+      objectUrls.push(image2Preview.src);
     }
 
     const image3Preview = document.getElementById(
@@ -81,6 +84,7 @@ export default function UploadAlbums() {
     ) as HTMLInputElement;
     if (image3Album?.id) {
       image3Preview.src = URL.createObjectURL(image3Album.file);
+      objectUrls.push(image3Preview.src);
     }
 
     const image4Preview = document.getElementById(
@@ -88,6 +92,7 @@ export default function UploadAlbums() {
     ) as HTMLInputElement;
     if (image4Album?.id) {
       image4Preview.src = URL.createObjectURL(image4Album.file);
+      objectUrls.push(image4Preview.src);
     }
 
     return () => {
@@ -139,6 +144,7 @@ export default function UploadAlbums() {
               className="flex flex-col gap-3"
               onSubmit={handleSubmit(onSubmit)}
             >
+              <p>Albums</p>
               <Field>
                 <FieldLabel htmlFor="video">Video</FieldLabel>
                 <Input
@@ -174,8 +180,7 @@ export default function UploadAlbums() {
                   <div className="flex flex-col items-center gap-3">
                     <video
                       id="video-preview"
-                      width={300}
-                      height={300}
+                      className="h-[500px] max-w-md"
                       controls
                     />
 
@@ -239,8 +244,7 @@ export default function UploadAlbums() {
                     <img
                       id="image1-preview"
                       alt="image1-preview"
-                      width={300}
-                      height={300}
+                      className="h-[500px] max-w-md"
                     />
 
                     <Button
@@ -303,8 +307,7 @@ export default function UploadAlbums() {
                     <img
                       id="image2-preview"
                       alt="image2-preview"
-                      width={300}
-                      height={300}
+                      className="h-[500px] max-w-md"
                     />
 
                     <Button
@@ -367,8 +370,7 @@ export default function UploadAlbums() {
                     <img
                       id="image3-preview"
                       alt="image3-preview"
-                      width={300}
-                      height={300}
+                      className="h-[500px] max-w-md"
                     />
 
                     <Button
@@ -431,8 +433,7 @@ export default function UploadAlbums() {
                     <img
                       id="image4-preview"
                       alt="image4-preview"
-                      width={300}
-                      height={300}
+                      className="h-[500px] max-w-md"
                     />
 
                     <Button

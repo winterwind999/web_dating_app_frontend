@@ -3,6 +3,8 @@
 import { createDislikeAction } from "@/actions/dislikes-action";
 import { getFeedsAction } from "@/actions/feeds-action";
 import { createLikeAction } from "@/actions/likes-action";
+import Block from "@/components/Block";
+import Report from "@/components/Report";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -285,10 +287,24 @@ export default function Feeds({
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <p className="text-3xl font-bold">
-                      {currentUser.firstName} {currentUser.lastName},{" "}
-                      {calculateAge(currentUser.birthday)}
-                    </p>
+                    <div className="flex items-center gap-2">
+                      <img
+                        src={currentUser.photo.secure_url!}
+                        alt={`${currentUser._id}-photo`}
+                        className="rounded-full"
+                        width={50}
+                        height={50}
+                      />
+
+                      <p className="text-3xl font-bold">
+                        {currentUser.firstName} {currentUser.lastName},{" "}
+                        {calculateAge(currentUser.birthday)}
+                      </p>
+
+                      <Block user={currentUser} />
+
+                      <Report user={currentUser} />
+                    </div>
 
                     <p className="text-sm">
                       {currentUser.address.city}, {currentUser.address.province}

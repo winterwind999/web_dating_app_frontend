@@ -43,12 +43,13 @@
 - ✅ Setup handling of JWT, CSRF, and CORS
 - ✅ Setup Role-based access control
 - ✅ Sign Up module
-- ⚠️ Google login and sign up module
+- ✅ Google login
+- ⚠️ Google sign up
 - ✅ User profile module
 - ✅ User feeds module (swiping left and right of profile)
 - ✅ Chats module
-- ⏳ Upload of photo and albums
-- ⏳ Block and report module
+- ✅ Upload of photo and albums
+- ✅ Block and report module
 - ✅ Notifications module
 - ⏳ Forgot Password
 - ⏳ Admin modules

@@ -8,6 +8,7 @@ import {
   type UpdateUserDto,
 } from "@/utils/constants";
 import { getCurrentUserId } from "@/utils/getCurrentUserId";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 
 export async function getUserAction() {
@@ -88,7 +89,11 @@ export async function uploadPhotoAction(formData: FormData) {
     true,
   );
 
-  return await res.json();
+  const data = await res.json();
+
+  revalidatePath("/profile");
+
+  return data;
 }
 
 export async function uploadAlbumsAction(formData: FormData) {
@@ -107,5 +112,30 @@ export async function uploadAlbumsAction(formData: FormData) {
     true,
   );
 
-  return await res.json();
+  const data = await res.json();
+
+  revalidatePath("/profile");
+
+  return data;
+}
+
+export async function removeAlbumAction(albumId: number) {
+  const userId = await getCurrentUserId();
+
+  if (!userId) {
+    throw new Error("Unauthorized");
+  }
+
+  const res = await authenticatedFetch(
+    `/users/removeAlbum/${userId}/${albumId}`,
+    {
+      method: "PATCH",
+    },
+  );
+
+  const data = await res.json();
+
+  revalidatePath("/profile");
+
+  return data;
 }

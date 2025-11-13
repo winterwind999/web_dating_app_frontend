@@ -85,7 +85,7 @@ export default function MatchList({ userId }: Props) {
               <Spinner />
             </div>
           ) : matches.length === 0 ? (
-            <p>No matches found</p>
+            <p>No matches yet...</p>
           ) : (
             matches.map((match) => {
               let user: User | null = null;
