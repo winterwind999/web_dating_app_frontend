@@ -189,11 +189,11 @@ export default function Feeds({
 
   return (
     <div className="flex items-center justify-center overflow-hidden py-5">
-      <div className="flex w-full items-center justify-center gap-3">
+      <div className="relative flex w-full items-center justify-center gap-3">
         <Button
           size="lg"
           variant="destructive"
-          className="z-40 h-16 w-16 rounded-full shadow-lg"
+          className="absolute top-1/3 left-0 z-40 h-16 w-16 rounded-full md:left-1/9 lg:left-1/3"
           onClick={() => handleSwipe("left")}
           disabled={isPendingCreateLike || isPendingCreateDislike}
         >
@@ -245,6 +245,7 @@ export default function Feeds({
                         className="h-full w-full object-cover"
                         controls
                         playsInline
+                        autoPlay
                       />
                     ) : (
                       <div className="flex h-full w-full items-center justify-center bg-gray-200">
@@ -268,7 +269,7 @@ export default function Feeds({
                         {albumIndex > 0 && (
                           <button
                             onClick={prevAlbum}
-                            className="absolute top-1/2 left-2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
+                            className="bg-primary/50 hover:bg-primary/70 absolute top-1/2 left-2 -translate-y-1/2 rounded-full p-2 text-white"
                           >
                             <ChevronLeft className="h-6 w-6" />
                           </button>
@@ -277,7 +278,7 @@ export default function Feeds({
                         {albumIndex < sortedAlbums.length - 1 && (
                           <button
                             onClick={nextAlbum}
-                            className="absolute top-1/2 right-2 -translate-y-1/2 rounded-full bg-black/50 p-2 text-white hover:bg-black/70"
+                            className="bg-primary/50 hover:bg-primary/70 absolute top-1/2 right-2 -translate-y-1/2 rounded-full p-2 text-white"
                           >
                             <ChevronRight className="h-6 w-6" />
                           </button>
@@ -287,23 +288,26 @@ export default function Feeds({
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <div className="flex items-center gap-2">
-                      <img
-                        src={currentUser.photo.secure_url!}
-                        alt={`${currentUser._id}-photo`}
-                        className="rounded-full"
-                        width={50}
-                        height={50}
-                      />
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <img
+                          src={currentUser.photo.secure_url!}
+                          alt={`${currentUser._id}-photo`}
+                          className="rounded-full"
+                          width={50}
+                          height={50}
+                        />
 
-                      <p className="text-3xl font-bold">
-                        {currentUser.firstName} {currentUser.lastName},{" "}
-                        {calculateAge(currentUser.birthday)}
-                      </p>
+                        <p className="text-3xl font-bold">
+                          {currentUser.firstName} {currentUser.lastName},{" "}
+                          {calculateAge(currentUser.birthday)}
+                        </p>
+                      </div>
 
-                      <Block user={currentUser} />
-
-                      <Report user={currentUser} />
+                      <div className="flex gap-2">
+                        <Block user={currentUser} />
+                        <Report user={currentUser} />
+                      </div>
                     </div>
 
                     <p className="text-sm">
@@ -311,7 +315,7 @@ export default function Feeds({
                     </p>
 
                     <div>
-                      <p className="ont-semibold">About</p>
+                      <p className="ont-semibold">About me</p>
                       <p className="text-sm text-gray-600">
                         {currentUser.shortBio}
                       </p>
@@ -347,7 +351,7 @@ export default function Feeds({
         <Button
           size="lg"
           variant="default"
-          className="bg-primary z-40 h-16 w-16 rounded-full"
+          className="bg-primary absolute top-1/3 right-0 z-40 h-16 w-16 rounded-full md:right-1/9 lg:right-1/3"
           onClick={() => handleSwipe("right")}
           disabled={isPendingCreateLike || isPendingCreateDislike}
         >
