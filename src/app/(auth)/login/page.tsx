@@ -209,8 +209,8 @@ export default function LoginPage() {
               <p className="text-center">or</p>
 
               <div className="flex w-full items-center justify-center">
-                <Button variant="ghost" size="2xl" asChild>
-                  <Link href={`${BACKEND_URL}/auth/google/login`}>
+                <Button variant="ghost" size="2xl" asChild disabled={isPending}>
+                  <Link href={`${BACKEND_URL}/auth/google/login`} >
                     <GoogleIcon />
                     <p>Login with Google</p>
                   </Link>

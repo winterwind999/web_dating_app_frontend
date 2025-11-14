@@ -3,7 +3,6 @@
 import { createDislikeAction } from "@/actions/dislikes-action";
 import { getFeedsAction } from "@/actions/feeds-action";
 import { createLikeAction } from "@/actions/likes-action";
-import Block from "@/components/Block";
 import Report from "@/components/Report";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -237,7 +236,7 @@ export default function Feeds({
                       <img
                         src={currentAlbum.secure_url}
                         alt={`${currentUser.firstName}'s photo`}
-                        className="h-full w-full object-cover"
+                        className="pointer-events-none h-full w-full object-cover select-none"
                       />
                     ) : currentAlbum?.type === "Video" ? (
                       <video
@@ -260,7 +259,9 @@ export default function Feeds({
                             <div
                               key={idx}
                               className={`h-1 flex-1 rounded-full ${
-                                idx === albumIndex ? "bg-white" : "bg-white/40"
+                                idx === albumIndex
+                                  ? "bg-dark dark:bg-white"
+                                  : "bg-dark/40 dark:bg-white/40"
                               }`}
                             />
                           ))}
@@ -287,13 +288,17 @@ export default function Feeds({
                     )}
                   </div>
 
+                  <div className="absolute top-0 right-0">
+                    <Report user={currentUser} />
+                  </div>
+
                   <div className="flex flex-col gap-2">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
                         <img
                           src={currentUser.photo.secure_url!}
                           alt={`${currentUser._id}-photo`}
-                          className="rounded-full"
+                          className="pointer-events-none rounded-full select-none"
                           width={50}
                           height={50}
                         />
@@ -303,11 +308,6 @@ export default function Feeds({
                           {calculateAge(currentUser.birthday)}
                         </p>
                       </div>
-
-                      <div className="flex gap-2">
-                        <Block user={currentUser} />
-                        <Report user={currentUser} />
-                      </div>
                     </div>
 
                     <p className="text-sm">
@@ -315,10 +315,8 @@ export default function Feeds({
                     </p>
 
                     <div>
-                      <p className="ont-semibold">About me</p>
-                      <p className="text-sm text-gray-600">
-                        {currentUser.shortBio}
-                      </p>
+                      <p className="font-semibold">About me</p>
+                      <p className="text-sm">{currentUser.shortBio}</p>
                     </div>
 
                     <div>

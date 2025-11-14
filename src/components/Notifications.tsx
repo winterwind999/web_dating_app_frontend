@@ -129,20 +129,7 @@ export default function Notifications() {
               className="bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground rounded-full p-2"
               onClick={onUpdateNotifications}
             >
-              {unreadCount > 0 ? (
-                // <div>
-                //   <BellRingIcon />
-                //   <Badge
-                //     className="h-5 min-w-5 rounded-full px-1"
-                //     variant="destructive"
-                //   ></Badge>
-                // </div>
-
-                <BellRingIcon />
-              ) : (
-                // <BellIcon />
-                <BellIcon />
-              )}
+              {unreadCount > 0 ? <BellRingIcon /> : <BellIcon />}
               {unreadCount > 0 && (
                 <Badge
                   className="absolute -top-1 -right-1"

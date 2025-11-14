@@ -8,6 +8,8 @@ export async function loginAction(email: string, password: string) {
   const cookieStore = await cookies();
   const csrfToken = cookieStore.get(CSRF_COOKIE)?.value;
 
+  console.log("BACKEND_URL", BACKEND_URL);
+
   const res = await fetch(`${BACKEND_URL}/api/auth/login`, {
     method: "POST",
     headers: {
