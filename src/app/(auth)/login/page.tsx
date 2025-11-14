@@ -206,7 +206,7 @@ export default function LoginPage() {
                 </FieldGroup>
               </form>
 
-              <p className="text-center">or</p>
+              {/* <p className="text-center">or</p>
 
               <div className="flex w-full items-center justify-center">
                 <Button variant="ghost" size="2xl" asChild disabled={isPending}>
@@ -215,7 +215,7 @@ export default function LoginPage() {
                     <p>Login with Google</p>
                   </Link>
                 </Button>
-              </div>
+              </div> */}
             </div>
           </CardContent>
         </Card>
