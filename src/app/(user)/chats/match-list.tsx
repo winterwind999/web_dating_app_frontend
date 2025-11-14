@@ -1,6 +1,8 @@
 "use client";
 
 import { getAllMatchesAction } from "@/actions/matches-action";
+import Block from "@/components/Block";
+import Report from "@/components/Report";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
@@ -104,16 +106,25 @@ export default function MatchList({ userId }: Props) {
                     setSelectedMatch(match);
                   }}
                 >
-                  <CardContent className="flex items-center gap-3">
-                    <img
-                      src={user.photo?.secure_url!}
-                      alt={`${user._id}-photo`}
-                      width={50}
-                      height={50}
-                    />
-                    <p>
-                      {user.firstName} {user.middleName} {user.lastName}
-                    </p>
+                  <CardContent>
+                    <div className="flex items-center justify-between gap-3">
+                      <div className="flex items-center gap-2">
+                        <img
+                          src={user.photo?.secure_url!}
+                          alt={`${user._id}-photo`}
+                          width={50}
+                          height={50}
+                        />
+                        <p>
+                          {user.firstName} {user.middleName} {user.lastName}
+                        </p>
+                      </div>
+
+                      <div className="flex flex-col gap-2">
+                        <Report user={user} />
+                        <Block user={user} />
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               );
