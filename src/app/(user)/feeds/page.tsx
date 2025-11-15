@@ -30,10 +30,13 @@ export default function FeedsPage() {
 
         console.log("userId", userId);
 
-        const feedsRes = await fetch(`${BACKEND_URL}/api/feeds/${userId}`, {
-          method: "GET",
-          credentials: "include",
-        });
+        const feedsRes = await fetch(
+          `${BACKEND_URL || "https://matchy-api-h0c4.onrender.com"}/api/feeds/${userId}`,
+          {
+            method: "GET",
+            credentials: "include",
+          },
+        );
 
         console.log("feedsRes", feedsRes);
 
