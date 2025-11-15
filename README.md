@@ -6,7 +6,9 @@
 - **Zustand** — Lightweight and intuitive state management for global app state
 - **Zod** — Type-safe schema validation for forms and API data
 - **React Hook Form** — Performant and flexible form state management
+- **Tailwind CSS** — Utility-first CSS framework for building modern, responsive, and highly customized user interfaces
 - **shadcn/ui** — Modern and customizable UI component library
+
 
 ## Project Setup
 
