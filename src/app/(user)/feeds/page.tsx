@@ -33,7 +33,7 @@ export default function FeedsPage() {
   useEffect(() => {
     async function load() {
       try {
-        const res = await fetch(`/api/me`, {
+        const res = await fetch("/api/me", {
           method: "GET",
           credentials: "include",
         });

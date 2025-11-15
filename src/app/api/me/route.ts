@@ -7,7 +7,7 @@ export async function GET() {
   console.log("route userId", userId);
 
   if (!userId) {
-    return NextResponse.json({ message: "Unauthorized" });
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
 
   return NextResponse.json({ userId });
