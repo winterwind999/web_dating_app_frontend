@@ -38,22 +38,30 @@ export default function FeedsPage() {
           credentials: "include",
         });
 
+        console.log("res", res);
+
         if (!res.ok) {
           throw new Error("Unauthorized");
         }
 
         const { userId } = await res.json();
 
+        console.log("userId", userId);
+
         const feedsRes = await fetch(`${BACKEND_URL}/api/feeds/${userId}`, {
           method: "GET",
           credentials: "include",
         });
+
+        console.log("feedsRes", feedsRes);
 
         if (!feedsRes.ok) {
           throw new Error("Failed to load feeds");
         }
 
         const feedsData = await feedsRes.json();
+
+        console.log("feedsData", feedsData);
 
         setData(feedsData);
       } catch (err: any) {
