@@ -153,9 +153,6 @@ export default function ForgotPassword({ setShowComponent }: Props) {
         render={({ field, fieldState }) => (
           <Field>
             <FieldLabel>OTP</FieldLabel>
-            <FieldDescription>
-              Please enter the OTP sent to your email address.
-            </FieldDescription>
 
             <div className="flex items-center gap-3">
               <InputOTP
@@ -199,6 +196,11 @@ export default function ForgotPassword({ setShowComponent }: Props) {
                 </Tooltip>
               )}
             </div>
+
+            <FieldDescription>
+              Please enter the OTP sent to your email address. If you don’t see
+              it in your inbox, kindly check your spam or junk folder.
+            </FieldDescription>
 
             {fieldState.invalid && <FieldError errors={[fieldState.error]} />}
           </Field>
