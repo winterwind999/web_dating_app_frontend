@@ -131,7 +131,9 @@ export default function ForgotPassword({ setShowComponent }: Props) {
                 id="email"
                 aria-invalid={fieldState.invalid}
                 autoComplete="email"
-                disabled={isPendingVerifyEmail || isPendingVerifyOtp}
+                disabled={
+                  enableOtp || isPendingVerifyEmail || isPendingVerifyOtp
+                }
               />
               <Button
                 type="button"
@@ -161,7 +163,10 @@ export default function ForgotPassword({ setShowComponent }: Props) {
                 pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
                 aria-invalid={fieldState.invalid}
                 disabled={
-                  !enableOtp || isPendingVerifyEmail || isPendingVerifyOtp
+                  !enableOtp ||
+                  !enableNext ||
+                  isPendingVerifyEmail ||
+                  isPendingVerifyOtp
                 }
               >
                 <InputOTPGroup>
