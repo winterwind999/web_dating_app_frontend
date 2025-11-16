@@ -96,7 +96,12 @@ export default function UserHeader() {
         <ThemeSwitcher />
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button variant="destructive" onClick={onLogout} disabled={isPending}>
+          <Button
+            type="button"
+            variant="destructive"
+            onClick={onLogout}
+            disabled={isPending}
+          >
             {isPending && <Spinner />} Logout
           </Button>
         </div>
@@ -138,12 +143,8 @@ export default function UserHeader() {
             <UserIcon /> Profile
           </Link>
 
-          {/* <div className="mt-2 flex items-center justify-between">
-            <Notifications />
-            <ThemeSwitcher />
-          </div> */}
-
           <Button
+            type="button"
             variant="destructive"
             onClick={() => {
               setMenuOpen(false);

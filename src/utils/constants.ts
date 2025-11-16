@@ -67,12 +67,6 @@ export const USER_STATUSES = {
 } as const;
 export type UserStatus = (typeof USER_STATUSES)[keyof typeof USER_STATUSES];
 
-export const USER_ROLES = {
-  USER: "User",
-  ADMIN: "Admin",
-} as const;
-export type UserRole = (typeof USER_ROLES)[keyof typeof USER_ROLES];
-
 export type Photo = {
   public_id: string | null;
   secure_url: string | null;
@@ -161,7 +155,6 @@ export type User = {
   preferences: Preferences;
   albums: Album[];
   status: UserStatus;
-  role: UserRole;
   warningCount: number;
   createdAt: string;
   updatedAt: string;

@@ -79,10 +79,13 @@ export default function Report({ user }: Props) {
 
   return (
     <Tooltip>
-      <TooltipTrigger>
+      <TooltipTrigger asChild>
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
-            <Button className="h-10 w-10 rounded-full bg-yellow-500 hover:bg-yellow-500/70">
+            <Button
+              type="button"
+              className="h-10 w-10 rounded-full bg-yellow-500 hover:bg-yellow-500/70"
+            >
               <TriangleAlertIcon />
             </Button>
           </DialogTrigger>

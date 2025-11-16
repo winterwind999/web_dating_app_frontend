@@ -102,20 +102,6 @@ export default function Home() {
               <Button variant="outline" size="2xl" asChild>
                 <Link href="/sign-up">Sign Up</Link>
               </Button>
-
-              {/* <p>or</p>
-
-              <Button
-                variant="ghost"
-                size="2xl"
-                asChild
-                className="border-light border-2"
-              >
-                <Link href={`${BACKEND_URL}/auth/google/login`}>
-                  <GoogleIcon />
-                  <p>Sign Up with Google</p>
-                </Link>
-              </Button> */}
             </div>
 
             <Stack

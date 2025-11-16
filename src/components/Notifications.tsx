@@ -126,6 +126,7 @@ export default function Notifications() {
         <PopoverTrigger asChild>
           <TooltipTrigger asChild className="relative">
             <Button
+              type="button"
               className="bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground rounded-full p-2"
               onClick={onUpdateNotifications}
             >

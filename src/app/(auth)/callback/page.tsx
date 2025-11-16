@@ -24,10 +24,10 @@ export default function AuthCallback() {
 
       window.history.replaceState({}, document.title, "/feeds");
 
-      router.push("/feeds");
+      router.replace("/feeds");
     } else {
       console.error("Missing tokens in callback");
-      router.push("/login");
+      router.replace("/login");
     }
   }, [searchParams, router]);
 

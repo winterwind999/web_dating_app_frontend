@@ -254,6 +254,7 @@ export default function Conversation({ userId }: Props) {
           />
 
           <Button
+            type="button"
             variant="default"
             onClick={onSendChat}
             disabled={isPendingSendChat || !chat.trim() || !isConnected}

@@ -9,7 +9,6 @@
 - **Tailwind CSS** — Utility-first CSS framework for building modern, responsive, and highly customized user interfaces
 - **shadcn/ui** — Modern and customizable UI component library
 
-
 ## Project Setup
 
 ### Install Dependencies
@@ -114,18 +113,15 @@ docker network ls
 - ✅ Landing page
 - ✅ Login module
 - ✅ Setup handling of JWT, CSRF, and CORS
-- ✅ Setup Role-based access control
 - ✅ Sign Up module
-- ⚠️ Google login
-- ⚠️ Google sign up
+- ✅ OAuth 2.0 Google login
 - ✅ User profile module
 - ✅ User feeds module (swiping left and right of profile)
 - ✅ Chats module
 - ✅ Upload of photo and albums
 - ✅ Block and report module
 - ✅ Notifications module
-- ⏳ Forgot Password
-- ⏳ Admin modules
+- ✅ Forgot Password
 - ✅ Dockerize frontend
 - ✅ Setup GitHub Actions
 - ✅ Setup Docker Hub

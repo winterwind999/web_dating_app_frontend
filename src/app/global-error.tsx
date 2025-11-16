@@ -24,6 +24,7 @@ export default function GlobalError({ error, reset }: Props) {
             <CardFooter>
               <div className="flex w-full justify-center">
                 <Button
+                  type="button"
                   color="default"
                   aria-label="try-again"
                   onClick={() => reset()}

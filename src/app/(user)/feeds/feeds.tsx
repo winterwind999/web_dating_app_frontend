@@ -190,6 +190,7 @@ export default function Feeds({
     <div className="flex items-center justify-center overflow-hidden py-5">
       <div className="relative flex w-full items-center justify-center gap-3">
         <Button
+          type="button"
           size="lg"
           variant="destructive"
           className="absolute top-1/3 left-0 z-40 h-16 w-16 rounded-full md:left-1/9 lg:left-1/3"
@@ -268,21 +269,23 @@ export default function Feeds({
                         </div>
 
                         {albumIndex > 0 && (
-                          <button
+                          <Button
+                            type="button"
                             onClick={prevAlbum}
                             className="bg-primary/50 hover:bg-primary/70 absolute top-1/2 left-2 -translate-y-1/2 rounded-full p-2 text-white"
                           >
                             <ChevronLeft className="h-6 w-6" />
-                          </button>
+                          </Button>
                         )}
 
                         {albumIndex < sortedAlbums.length - 1 && (
-                          <button
+                          <Button
+                            type="button"
                             onClick={nextAlbum}
                             className="bg-primary/50 hover:bg-primary/70 absolute top-1/2 right-2 -translate-y-1/2 rounded-full p-2 text-white"
                           >
                             <ChevronRight className="h-6 w-6" />
-                          </button>
+                          </Button>
                         )}
                       </>
                     )}
@@ -347,6 +350,7 @@ export default function Feeds({
         </div>
 
         <Button
+          type="button"
           size="lg"
           variant="default"
           className="bg-primary absolute top-1/3 right-0 z-40 h-16 w-16 rounded-full md:right-1/9 lg:right-1/3"

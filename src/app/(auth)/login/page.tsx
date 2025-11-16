@@ -1,6 +1,7 @@
 "use client";
 
 import { loginAction } from "@/actions/auth-action";
+import ForgotPasswordWrapper from "@/components/ForgotPasswordWrapper";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import {
@@ -189,6 +190,10 @@ export default function LoginPage() {
                       </Field>
                     )}
                   />
+
+                  <div className="flex justify-end">
+                    <ForgotPasswordWrapper />
+                  </div>
 
                   <Field
                     orientation="horizontal"

@@ -82,6 +82,7 @@ export default function Block({ user }: Props) {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button
+              type="button"
               variant="destructive"
               className="hover:bg-destructive/70 h-10 w-10 rounded-full"
             >

@@ -19,7 +19,11 @@ export default function Error({ error }: Props) {
         </CardContent>
         <CardFooter>
           <div className="flex w-full justify-center">
-            <Button variant="default" onClick={() => router.replace("/")}>
+            <Button
+              type="button"
+              variant="default"
+              onClick={() => router.replace("/")}
+            >
               LOGIN
             </Button>
           </div>
