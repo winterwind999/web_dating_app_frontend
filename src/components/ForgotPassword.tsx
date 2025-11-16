@@ -13,6 +13,7 @@ import { Button } from "./ui/button";
 import { Field, FieldDescription, FieldError, FieldLabel } from "./ui/field";
 import { Input } from "./ui/input";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "./ui/input-otp";
+import { Spinner } from "./ui/spinner";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 const formSchema = z.object({
@@ -39,7 +40,7 @@ export default function ForgotPassword({ setShowComponent }: Props) {
     useState<boolean>(false);
   const [isPendingVerifyOtp, setIsPendingVerifyOtp] = useState<boolean>(false);
 
-  const { watch, control, reset } = useForm<FormValues>({
+  const { watch, control } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     mode: "all",
     defaultValues: {
@@ -137,7 +138,7 @@ export default function ForgotPassword({ setShowComponent }: Props) {
                 onClick={onVerifyEmail}
                 disabled={enableOtp}
               >
-                SEND OTP
+                {isPendingVerifyEmail && <Spinner />} SEND OTP
               </Button>
             </div>
 
@@ -178,14 +179,18 @@ export default function ForgotPassword({ setShowComponent }: Props) {
               {status !== null && (
                 <Tooltip>
                   <TooltipTrigger>
-                    {status === "Verified" ? (
+                    {isPendingVerifyOtp ? (
+                      <p>Pending</p>
+                    ) : status === "Verified" ? (
                       <CheckCircleIcon className="text-green-700" />
                     ) : (
                       <XCircleIcon className="text-destructive" />
                     )}
                   </TooltipTrigger>
                   <TooltipContent>
-                    {status === "Verified" ? (
+                    {isPendingVerifyOtp ? (
+                      <Spinner />
+                    ) : status === "Verified" ? (
                       <p>OTP Verified</p>
                     ) : (
                       <p>OTP Incorrect</p>
