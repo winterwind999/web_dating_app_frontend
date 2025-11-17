@@ -112,9 +112,11 @@ export default function MatchList({ userId }: Props) {
                         <img
                           src={user.photo?.secure_url!}
                           alt={`${user._id}-photo`}
+                          className="pointer-events-none rounded-full select-none"
                           width={50}
                           height={50}
                         />
+
                         <p>
                           {user.firstName} {user.middleName} {user.lastName}
                         </p>
